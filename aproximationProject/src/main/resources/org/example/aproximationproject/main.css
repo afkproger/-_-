@@ -1,0 +1,18 @@
+.button {
+    -fx-background-color: #025239;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 15px; /* Радиус кнопки */
+    -fx-pref-width: 200px;
+    /*-fx-padding: 5px; !* Внутренний отступ для текста *!*/
+}
+.button:hover{
+    -fx-background-color: #2c2c2a;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.custom-hbox {
+    -fx-background-color: #b6bdab;
+    -fx-padding: 30px;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.aproximationproject.Controller.MainController">
+    <top>
+        <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER" styleClass="custom-hbox">
+            <Button text="Ручной ввод" fx:id="manualButton" styleClass="button"/>
+            <Button text="Считать данные" fx:id="fileButton" styleClass="button"/>
+        </HBox>
+    </top>
+    <center>
+        <Label text="Тестовая дата" fx:id="textLabel"/>
+    </center>
+    <bottom>
+
+    </bottom>
+</BorderPane>
