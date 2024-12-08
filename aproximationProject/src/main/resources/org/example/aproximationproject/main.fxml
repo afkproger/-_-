@@ -14,6 +14,8 @@
         <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER" styleClass="custom-hbox">
             <Button text="Ручной ввод" fx:id="manualButton" styleClass="button"/>
             <Button text="Считать данные" fx:id="fileButton" styleClass="button"/>
+            <Button text="О студенте" fx:id="aboutStudent" styleClass="button" />
+            <Button text="О курсовом проекте" fx:id="aboutProject" styleClass="button"/>
         </HBox>
     </top>
     <center>

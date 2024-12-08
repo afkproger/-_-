@@ -1,6 +1,7 @@
 module org.example.aproximationproject {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.apache.poi.poi;
 
 
     opens org.example.aproximationproject to javafx.fxml;
