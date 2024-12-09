@@ -8,6 +8,8 @@
 
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.aproximationproject.Controller.MainController">
     <top>
@@ -19,9 +21,15 @@
         </HBox>
     </top>
     <center>
-        <Label text="Тестовая дата" fx:id="textLabel"/>
+        <LineChart fx:id ="lineChart" prefWidth="600" prefHeight="400" visible="false" title="График апроксимации">
+            <xAxis>
+                <NumberAxis fx:id="xAxis" label="X"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" label="Y"/>
+            </yAxis>
+        </LineChart>
     </center>
     <bottom>
-
     </bottom>
 </BorderPane>

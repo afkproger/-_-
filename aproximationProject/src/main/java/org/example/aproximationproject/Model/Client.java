@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.Map;
 
 public class Client {
-    public static String getApproximationCoefficients(Map<Double, Double> inputData) throws IOException {
+    public static double[] getApproximationCoefficients(Map<Double, Double> inputData) throws IOException {
         Socket socket = new Socket("localhost", 4999);
         System.out.println("Подключение к серверу...");
         // Отправка 4 чисел на сервер
@@ -29,7 +29,7 @@ public class Client {
         }
 
         socket.close();
-        return "y = " + receivedNumbers[0] + " * x + " + receivedNumbers[1];
+        return receivedNumbers;
     }
 
 
