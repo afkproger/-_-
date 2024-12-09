@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.aproximationproject.Controller.MainController">
     <top>
         <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER" styleClass="custom-hbox">
             <Button text="Ручной ввод" fx:id="manualButton" styleClass="button"/>
             <Button text="Считать данные" fx:id="fileButton" styleClass="button"/>
-            <Button text="О студенте" fx:id="aboutStudent" styleClass="button" />
+            <Button text="О студенте" fx:id="aboutStudent" styleClass="button"/>
             <Button text="О курсовом проекте" fx:id="aboutProject" styleClass="button"/>
         </HBox>
     </top>
     <center>
-        <LineChart fx:id ="lineChart" prefWidth="600" prefHeight="400" visible="false" title="График апроксимации">
+        <LineChart fx:id="lineChart" prefWidth="600" prefHeight="400" visible="false" title="График апроксимации">
             <xAxis>
                 <NumberAxis fx:id="xAxis" label="X"/>
             </xAxis>
@@ -31,5 +26,13 @@
         </LineChart>
     </center>
     <bottom>
+        <HBox spacing="10" alignment="CENTER" fx:id="hBox" visible="false">
+            <TextField fx:id="xCoordinateField" promptText="X координата"/>
+            <TextField fx:id="yCoordinateField" promptText="Y координата"/>
+            <Button text="Добавить" fx:id="addButton" styleClass="button"/>
+            <Button text="Удалить" fx:id="removeButton" styleClass="button"/>
+            <Button text="Построить график" fx:id="buildGraphButton" styleClass="button"/>
+            <ListView fx:id="pointsList" prefHeight="200" prefWidth="300"/>
+        </HBox>
     </bottom>
 </BorderPane>
