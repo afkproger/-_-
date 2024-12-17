@@ -12,7 +12,7 @@
             <Button text="Ручной ввод" fx:id="manualButton" styleClass="button"/>
             <Button text="Считать данные" fx:id="fileButton" styleClass="button"/>
             <Button text="О студенте" fx:id="aboutStudent" styleClass="button"/>
-            <Button text="О курсовом проекте" fx:id="aboutProject" styleClass="button"/>
+            <Button text="Руководство пользователя" fx:id="aboutProject" styleClass="button"/>
         </HBox>
     </top>
     <center>

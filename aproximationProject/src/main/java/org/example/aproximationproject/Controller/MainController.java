@@ -1,5 +1,7 @@
 package org.example.aproximationproject.Controller;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -66,7 +68,7 @@ public class MainController {
 
         fileButton.setOnAction(event -> {
             onExcelOpen();
-            hBox.setVisible(false);
+//            hBox.setVisible(false);
         });
 
         aboutProject.setOnAction(actionEvent -> {
@@ -103,10 +105,14 @@ public class MainController {
                 xCoordinateField.clear();
                 yCoordinateField.clear();
             } else {
-                System.out.println("Введите корректные координаты.");
+                showAlertMessage("Проверьте формат ввода координат");
+                xCoordinateField.clear();
+                yCoordinateField.clear();
             }
         } catch (NumberFormatException e) {
-            System.out.println("Ошибка ввода, координаты должны быть числами.");
+            showAlertMessage("Проверьте формат ввода координат");
+            xCoordinateField.clear();
+            yCoordinateField.clear();
         }
     }
 
@@ -131,10 +137,10 @@ public class MainController {
                 lineChart.setVisible(true);
                 drawGraph(coefficients, points);
             } else {
-                System.out.println("Коэффициенты не найдены");
+                showAlertMessage("Коэффициенты для построения графика не найдены");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            showAlertMessage("Ошибка при подключении к серверу");
         }
     }
 
@@ -155,13 +161,13 @@ public class MainController {
                         lineChart.setVisible(true);
                         drawGraph(coefficients, data);
                     } else {
-                        System.out.println("Coefficients not found");
+                        showAlertMessage("Ошибка при подключении к серверу");
                     }
                 } else {
-                    System.out.println("ERROR");
+                    showAlertMessage("Ошибка при открытии EXCEL файла");
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                showAlertMessage("Ошибка при отрисовке графика");
             }
         }
     }
@@ -183,5 +189,14 @@ public class MainController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlertMessage(String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 }
