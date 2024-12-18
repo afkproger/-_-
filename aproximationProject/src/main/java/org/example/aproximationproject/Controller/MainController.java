@@ -1,5 +1,8 @@
 package org.example.aproximationproject.Controller;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.collections.FXCollections;
@@ -9,13 +12,17 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.example.aproximationproject.Model.Client;
+import org.example.aproximationproject.Model.Config;
 import org.example.aproximationproject.Model.ExcelReader;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 public class MainController {
@@ -70,7 +77,15 @@ public class MainController {
 
         fileButton.setOnAction(event -> {
             onExcelOpen();
-//            hBox.setVisible(false);
+            hBox.setVisible(false);
+        });
+
+        aboutStudent.setOnAction(event -> {
+            try {
+                showModalInfo("Работу выполнил студент 424 группы " + '\n' + " Барашенков Николай Андреевич", true, "О студенте");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         aboutProject.setOnAction(actionEvent -> {
@@ -85,11 +100,11 @@ public class MainController {
 
         buildGraphButton.setOnAction(event -> manualInput());
 
-        aboutStudent.setOnAction(actionEvent -> {
-            lineChart.getData().clear();
-            lineChart.setVisible(false);
-            hBox.setVisible(false);
-        });
+//        aboutStudent.setOnAction(actionEvent -> {
+//            lineChart.getData().clear();
+//            lineChart.setVisible(false);
+//            hBox.setVisible(false);
+//        });
     }
 
     // Метод для добавления точки
@@ -245,5 +260,41 @@ public class MainController {
         alert.setContentText(message);
 
         alert.showAndWait();
+    }
+
+
+
+    @FXML
+    private void showModalInfo(String infoText, boolean isTextMode, String title) throws IOException {
+        try {
+            Config config = Config.getInstance("src/main/resources/config.properties");
+            int wid = config.getInt("modal.wid" , 0);
+            int height = config.getInt("modal.height" , 0);
+            if (wid != 0 && height != 0) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/aproximationproject/modal.fxml"));
+                Parent modalRoot = loader.load();
+                ModalController controller = loader.getController();
+                if (isTextMode) {
+                    controller.setInfo(infoText);
+                } else {
+                    controller.setImage(infoText);
+                }
+
+                Stage modalStage = new Stage();
+                modalStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+
+                Scene modalScene = new Scene(modalRoot, wid, height);
+                modalStage.setScene(modalScene);
+
+                modalStage.setTitle(title);
+                modalStage.showAndWait();
+            }else {
+                throw new Exception();
+            }
+
+        } catch (Exception e) {
+
+            showAlertMessage("Ошибка при открытии модального окна");
+        }
     }
 }

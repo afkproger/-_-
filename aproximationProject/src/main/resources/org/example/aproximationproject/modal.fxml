@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.aproximationproject.Controller.ModalController"
+      alignment="CENTER" spacing="10" styleClass="vbox">
+    <Label fx:id="info"/>
+    <ImageView fx:id="imageView" />
+</VBox>
