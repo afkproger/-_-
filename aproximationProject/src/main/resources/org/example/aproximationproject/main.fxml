@@ -27,8 +27,9 @@
     </center>
     <bottom>
         <HBox spacing="10" alignment="CENTER" fx:id="hBox" visible="false">
-            <TextField fx:id="xCoordinateField" promptText="X координата"/>
-            <TextField fx:id="yCoordinateField" promptText="Y координата"/>
+            <TextField fx:id="xCoordinateField" promptText="Расход, кг/сек"/>
+            <TextField fx:id="yCoordinateField" promptText="Отклонение уровня, мм"/>
+            <TextField fx:id="zCoordinateField" promptText="Температура , С"/>
             <Button text="Добавить" fx:id="addButton" styleClass="button"/>
             <Button text="Удалить" fx:id="removeButton" styleClass="button"/>
             <Button text="Построить график" fx:id="buildGraphButton" styleClass="button"/>

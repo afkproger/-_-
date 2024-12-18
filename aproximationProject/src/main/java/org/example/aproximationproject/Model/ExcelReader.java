@@ -1,5 +1,7 @@
 package org.example.aproximationproject.Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.ss.usermodel.*;
@@ -10,9 +12,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class ExcelReader {
-    public Map<Double, Double> readCoordinates(File file) throws IOException {
-        Map<Double, Double> coordinates = new HashMap<>();
-
+    public Map<Double, ArrayList<Double>> readCoordinates(File file) throws IOException {
+        Map<Double, ArrayList<Double>> coordinates = new HashMap<>();
         try (FileInputStream fis = new FileInputStream(file);
              Workbook workbook = WorkbookFactory.create(fis)) {
 
@@ -20,13 +21,17 @@ public class ExcelReader {
             for (Row row : sheet) {
                 Cell xCell = row.getCell(0); // Первая колонка (x)
                 Cell yCell = row.getCell(1); // Вторая колонка (y)
+                Cell zCell = row.getCell(2);
 
-                if (xCell != null && yCell != null) {
+                if (xCell != null && yCell != null && zCell != null) {
                     Double x = getCellValueAsDouble(xCell);
                     Double y = getCellValueAsDouble(yCell);
-
-                    if (validateCoordinate(x, y)) {
-                        coordinates.put(x, y);
+                    Double z = getCellValueAsDouble(zCell);
+                    if (validateCoordinate(x ,y, z)) {
+                        ArrayList<Double> point = new ArrayList<>();
+                        point.add(y);
+                        point.add(z);
+                        coordinates.put(x, point);
                     } else {
                         return null;
                     }
@@ -45,8 +50,8 @@ public class ExcelReader {
     }
 
 
-    private Boolean validateCoordinate(Double x, Double y) {
-        if (x != null && y != null && y > (-273.15)) {
+    private Boolean validateCoordinate(Double x ,  Double y, Double z) {
+        if (x != null && y != null && z!=null && z > (-273.15)) {
             return true;
         } else {
             return false;
