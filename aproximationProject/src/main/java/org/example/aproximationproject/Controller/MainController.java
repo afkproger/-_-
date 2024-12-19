@@ -82,17 +82,31 @@ public class MainController {
 
         aboutStudent.setOnAction(event -> {
             try {
-                showModalInfo("Работу выполнил студент 424 группы " + '\n' + " Барашенков Николай Андреевич", true, "О студенте");
+                showModalInfo("""
+                        Работу выполнил студент 424 группы СПБГТИ(ТУ) 
+                        Кафедра Систем авторизированного проектирования и управления
+                        
+                        Направление подготовки	
+                        09.03.01 	
+                        Информатика и вычислительная техника
+                      
+                        Дисциплина 	Вычислительные системы, сети и телекомуникации
+                        Факультет	Информационных технологий и управления
+                                                
+                        Барашенков Николай Андреевич""", true, "О студенте");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
 
-        aboutProject.setOnAction(actionEvent -> {
-            lineChart.getData().clear();
-            lineChart.setVisible(false);
-            hBox.setVisible(false);
+        aboutProject.setOnMouseClicked(actionEvent -> {
+            try {
+                showModalInfo("/org/example/aproximationproject/info.png" , false , "Справочная информация");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
+
 
         addButton.setOnAction(event -> addPoint());
 
@@ -245,7 +259,7 @@ public class MainController {
             lineChart.getData().add(temperatureSeries);
 
             // График температуры (точки до аппроксимации)
-            XYChart.Series<Number, Number> temperaturePoints = createPointsSeries("Температура до аппроксимации", points, TEMPERATURE);
+            XYChart.Series<Number, Number> temperaturePoints = createPointsSeries("Точки(Температура)", points, TEMPERATURE);
             lineChart.getData().add(temperaturePoints);
 
         } catch (Exception e) {
@@ -293,7 +307,7 @@ public class MainController {
             }
 
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
             showAlertMessage("Ошибка при открытии модального окна");
         }
     }
